@@ -1,5 +1,6 @@
 .grid {
   display: grid;
+  font-family: var(--font-cormorant);
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   width: min(88vw, 460px);
@@ -57,6 +58,7 @@
   width: 82%;
   height: 82%;
   border-radius: 8px;
+  font-family: var(--font-cormorant);
   font-size: clamp(1.1rem, 5vw, 1.9rem);
   font-weight: 700;
   color: #3a3b3d;

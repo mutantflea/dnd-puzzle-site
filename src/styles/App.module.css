@@ -14,7 +14,6 @@
   letter-spacing: 0.12em;
   margin: 0 0 0.35rem;
   color: #d8d2c4;
-  text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px var(--carve-lo);
 }
 
 .subtitle {

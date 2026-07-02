@@ -1,6 +1,7 @@
 .clues {
   /* wrap tablets into as many columns as fit; grows sideways as clues are
      added rather than only pushing the page down. */
+  font-family: var(--font-cormorant);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 0.9rem;
@@ -13,7 +14,6 @@
   font-size: 1.3rem;
   letter-spacing: 0.08em;
   color: #cfc8b8;
-  text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px var(--carve-lo);
 }
 
 /* Sandstone-tablet card — warm tan gives the dark carved text good contrast */
