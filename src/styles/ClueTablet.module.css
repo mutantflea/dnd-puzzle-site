@@ -132,3 +132,54 @@
   background: rgba(0, 0, 0, 0.22);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) inset;
 }
+
+/* Square 5x5 clue grid (Bjorn/Astrid, Fenrick, Aurélia): faint cells with
+   positioned X/O marks and an arrows overlay. */
+.clueGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 190px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.clueGridCell {
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) inset;
+}
+
+/* SVG overlay sits exactly over the grid; heads coloured via currentColor. */
+.clueArrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  color: #e6e1d4;
+}
+
+/* A positioned mark tile, centred on its cell. */
+.clueMark {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 18%;
+  height: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3a3b3d;
+  background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face) 55%, #b4b5b3);
+  text-shadow: 0 1px 0 var(--carve-hi);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 4px rgba(0, 0, 0, 0.45);
+}
