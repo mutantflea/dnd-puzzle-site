@@ -1,6 +1,5 @@
 .grid {
   display: grid;
-  font-family: var(--font-cormorant);
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   width: min(88vw, 460px);

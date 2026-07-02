@@ -1,7 +1,6 @@
 .clues {
   /* wrap tablets into as many columns as fit; grows sideways as clues are
      added rather than only pushing the page down. */
-  font-family: var(--font-cormorant);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 0.9rem;
@@ -129,6 +128,7 @@
   height: 2rem;
   padding: 0 0.35rem;
   border-radius: 6px;
+  font-family: var(--font-cormorant);
   font-weight: 700;
   color: #3a3b3d;
   background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face) 55%, #b4b5b3);
@@ -158,6 +158,7 @@
 .miniCell,
 .miniCellEmpty {
   aspect-ratio: 1 / 1;
+  font-family: var(--font-cormorant);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,6 +219,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  font-family: var(--font-cormorant);
   font-size: 0.85rem;
   font-weight: 700;
   color: #3a3b3d;
