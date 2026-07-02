@@ -7,22 +7,15 @@ interface CellProps {
   letter: string;
   selected: boolean;
   onSelect: (index: number) => void;
-  onKey: (index: number, key: string) => void;
 }
 
 /**
  * A single grid square. Always a drop target. When it holds a letter it also
- * renders a draggable Tile. The square itself is focusable so it can be edited
- * from the keyboard (free-type): type A–Z to set, Backspace/Delete to clear,
- * arrow keys to move focus.
+ * renders a draggable Tile. Tapping/clicking selects the cell and hands focus
+ * to the grid's hidden input, which is what actually captures typing (so the
+ * software keyboard appears on iOS and key handling is consistent everywhere).
  */
-export default function Cell({
-  index,
-  letter,
-  selected,
-  onSelect,
-  onKey,
-}: CellProps) {
+export default function Cell({ index, letter, selected, onSelect }: CellProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: `cell-${index}`,
     data: { index },
@@ -41,19 +34,11 @@ export default function Cell({
     <div
       ref={setNodeRef}
       className={className}
-      data-cell-index={index}
-      tabIndex={0}
       role="gridcell"
       aria-label={
         letter ? `Cell ${index + 1}, letter ${letter}` : `Cell ${index + 1}, empty`
       }
-      onMouseDown={() => onSelect(index)}
-      onFocus={() => onSelect(index)}
-      onKeyDown={(e) => {
-        // Let dnd-kit's own keyboard handling through if a drag is active;
-        // otherwise treat keys as editing input.
-        onKey(index, e.key);
-      }}
+      onClick={() => onSelect(index)}
     >
       {letter && <Tile index={index} letter={letter} />}
     </div>

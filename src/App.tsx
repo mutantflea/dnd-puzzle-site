@@ -130,8 +130,8 @@ export default function App() {
           </div>
           <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} rolling={rolling} />
           <p className={styles.hint}>
-            Tip: use the arrow keys to move between squares, letters to fill them,
-            and Backspace to clear.
+            Tip: tap a square to select it, then type a letter (or Backspace to
+            clear). Arrow keys move between squares.
           </p>
         </section>
       </main>

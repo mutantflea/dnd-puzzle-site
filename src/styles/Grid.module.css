@@ -1,4 +1,5 @@
 .grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
@@ -16,6 +17,23 @@
     0 2px 0 rgba(255, 250, 235, 0.32) inset,
     0 -3px 6px rgba(70, 52, 28, 0.4) inset,
     0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* Real input that captures typing but stays out of sight. Kept focusable
+   (opacity, not display:none) so iOS raises the keyboard; 16px font stops iOS
+   from zooming when it gains focus. */
+.hiddenInput {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 16px;
+  caret-color: transparent;
 }
 
 .gridRolling {

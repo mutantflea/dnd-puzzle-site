@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -22,9 +22,11 @@ interface GridProps {
 export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  // One real input backs all typing: tapping a cell focuses it, so iOS shows
+  // its keyboard and every browser routes keys through the same handler.
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  // A small activation distance means a plain click selects the cell (for
+  // A small activation distance means a plain tap selects the cell (for
   // typing) while a deliberate drag moves the tile.
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -44,33 +46,44 @@ export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
     }
   }
 
-  function focusCell(index: number) {
-    const el = containerRef.current?.querySelector<HTMLElement>(
-      `[data-cell-index="${index}"]`,
-    );
-    el?.focus();
+  function selectCell(index: number) {
+    setSelected(index);
+    // focus in the same user gesture so iOS raises the software keyboard
+    inputRef.current?.focus();
   }
 
-  function handleKey(index: number, key: string) {
-    if (/^[a-zA-Z]$/.test(key)) {
-      onSetCell(index, key);
-      return;
+  function moveSelection(key: string) {
+    setSelected((cur) => {
+      if (cur === null) return 0;
+      const row = Math.floor(cur / GRID_SIZE);
+      const col = cur % GRID_SIZE;
+      if (key === "ArrowUp" && row > 0) return cur - GRID_SIZE;
+      if (key === "ArrowDown" && row < GRID_SIZE - 1) return cur + GRID_SIZE;
+      if (key === "ArrowLeft" && col > 0) return cur - 1;
+      if (key === "ArrowRight" && col < GRID_SIZE - 1) return cur + 1;
+      return cur;
+    });
+  }
+
+  function handleInputKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key.startsWith("Arrow")) {
+      e.preventDefault(); // stop the browser scrolling as well
+      moveSelection(e.key);
+    } else if (e.key === "Backspace" || e.key === "Delete") {
+      if (selected !== null) {
+        e.preventDefault();
+        onSetCell(selected, "");
+      }
     }
-    if (key === "Backspace" || key === "Delete") {
-      onSetCell(index, "");
-      return;
+    // letters are handled in onChange so mobile keyboards work too
+  }
+
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    const ch = e.target.value.slice(-1);
+    if (selected !== null && /[a-zA-Z]/.test(ch)) {
+      onSetCell(selected, ch);
     }
-    const row = Math.floor(index / GRID_SIZE);
-    const col = index % GRID_SIZE;
-    let target: number | null = null;
-    if (key === "ArrowUp" && row > 0) target = index - GRID_SIZE;
-    else if (key === "ArrowDown" && row < GRID_SIZE - 1) target = index + GRID_SIZE;
-    else if (key === "ArrowLeft" && col > 0) target = index - 1;
-    else if (key === "ArrowRight" && col < GRID_SIZE - 1) target = index + 1;
-    if (target !== null) {
-      setSelected(target);
-      focusCell(target);
-    }
+    // the input is controlled to "" so it never accumulates text
   }
 
   const activeLetter = activeIndex !== null ? grid[activeIndex] : "";
@@ -83,19 +96,30 @@ export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
       onDragCancel={() => setActiveIndex(null)}
     >
       <div
-        ref={containerRef}
         className={`${styles.grid} ${rolling ? styles.gridRolling : ""}`}
         role="grid"
         aria-label="Puzzle grid"
       >
+        <input
+          ref={inputRef}
+          className={styles.hiddenInput}
+          value=""
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+          inputMode="text"
+          autoCapitalize="characters"
+          autoCorrect="off"
+          autoComplete="off"
+          spellCheck={false}
+          aria-label="Type a letter for the selected square"
+        />
         {grid.map((letter, i) => (
           <Cell
             key={i}
             index={i}
             letter={letter}
             selected={selected === i}
-            onSelect={setSelected}
-            onKey={handleKey}
+            onSelect={selectCell}
           />
         ))}
       </div>
