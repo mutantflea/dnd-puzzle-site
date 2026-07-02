@@ -39,13 +39,13 @@
 
 .cellOver {
   box-shadow:
-    0 0 0 2px var(--accent) inset,
+    0 0 0 var(--ring-width) var(--accent) inset,
     0 2px 4px rgba(0, 0, 0, 0.5) inset;
 }
 
 .cellSelected {
   box-shadow:
-    0 0 0 2px #d8c8a0 inset,
+    0 0 0 var(--ring-width) var(--accent-select) inset,
     0 2px 3px rgba(0, 0, 0, 0.45) inset;
 }
 

@@ -12,6 +12,7 @@ import {
 import styles from "./styles/App.module.css";
 
 const STORAGE_KEY = "dnd-puzzle-grid";
+const CB_KEY = "dnd-puzzle-colourblind";
 
 /** Load order: URL hash (#g=...) -> localStorage -> Bernadette's initial grid. */
 function loadInitialGrid(): GridState {
@@ -38,11 +39,20 @@ function loadInitialGrid(): GridState {
 export default function App() {
   const [grid, setGrid] = useState<GridState>(loadInitialGrid);
   const [copied, setCopied] = useState(false);
+  const [colourBlind, setColourBlind] = useState(
+    () => localStorage.getItem(CB_KEY) === "1",
+  );
 
   // Auto-save on every change.
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(grid));
   }, [grid]);
+
+  // Apply the colour-blind theme by toggling a class on <html>, and remember it.
+  useEffect(() => {
+    document.documentElement.classList.toggle("cb", colourBlind);
+    localStorage.setItem(CB_KEY, colourBlind ? "1" : "0");
+  }, [colourBlind]);
 
   const handleMove = useCallback(
     (from: number, to: number) => setGrid((g) => moveTile(g, from, to)),
@@ -95,6 +105,14 @@ export default function App() {
             </button>
             <button type="button" className={styles.button} onClick={handleShare}>
               {copied ? "Link copied!" : "Copy shareable link"}
+            </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => setColourBlind((v) => !v)}
+              aria-pressed={colourBlind}
+            >
+              Fenrick mode: {colourBlind ? "on" : "off"}
             </button>
           </div>
           <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} />

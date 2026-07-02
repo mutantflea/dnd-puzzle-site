@@ -4,10 +4,23 @@
   --stone-light: #b9bbbd;
   --tile-face: #cfd0cf;
   --tile-face-hi: #e9eae8;
-  --accent: #7a5c3e;
+  --accent: #7a5c3e; /* drag-over highlight */
+  --accent-select: #d8c8a0; /* selected cell highlight */
+  --ring-width: 2px;
   --carve-hi: rgba(255, 255, 255, 0.55);
   --carve-lo: rgba(0, 0, 0, 0.55);
   font-family: "Georgia", "Times New Roman", serif;
+}
+
+/* Colour-blind mode: a CVD-safe blue/orange accent pair (distinguishable
+   across protan/deutan/tritan), brighter tiles, and thicker state rings so
+   meaning never rests on hue alone. */
+:root.cb {
+  --tile-face: #f2f3f1;
+  --tile-face-hi: #ffffff;
+  --accent: #1f6feb; /* drag-over: strong blue */
+  --accent-select: #f59e0b; /* selected: strong orange */
+  --ring-width: 3px;
 }
 
 * {
