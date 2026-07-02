@@ -2,7 +2,7 @@ import ClueTablet from "./ClueTablet";
 import styles from "../styles/ClueTablet.module.css";
 
 // Bernadette's starting board (the main 5x5).
-const BERNADETTE_LAYOUT = "EA..D...F..IK.O.Q...V.Y.Z";
+const BERNADETTE_LAYOUT = "EA..D...F..IK.O.Q...V..YZ";
 
 // --- Clue positions on the 5x5 grid --------------------------------------
 // row/col are 1-indexed (row 1 = top, col 1 = left). These are BEST-GUESS

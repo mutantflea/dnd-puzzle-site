@@ -11,8 +11,8 @@ export type Grid = string[]; // length 25, "" = blank
 //   Row 2:  . . . F .
 //   Row 3:  . I K . O
 //   Row 4:  . Q . . .
-//   Row 5:  V . Y . Z
-const INITIAL_STRING = "EA..D" + "...F." + ".IK.O" + ".Q..." + "V.Y.Z";
+//   Row 5:  V . . Y Z
+const INITIAL_STRING = "EA..D" + "...F." + ".IK.O" + ".Q..." + "V..YZ";
 
 export const INITIAL_GRID: Grid = stringToGrid(INITIAL_STRING);
 
