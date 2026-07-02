@@ -100,7 +100,11 @@ export default function App() {
 
         <section className={styles.board}>
           <div className={styles.toolbar}>
-            <button type="button" className={styles.button} onClick={handleReset}>
+            <button
+              type="button"
+              className={`${styles.button} ${styles.buttonDanger}`}
+              onClick={handleReset}
+            >
               Reset to original
             </button>
             <button type="button" className={styles.button} onClick={handleShare}>
@@ -108,7 +112,7 @@ export default function App() {
             </button>
             <button
               type="button"
-              className={styles.button}
+              className={`${styles.button} ${colourBlind ? styles.buttonOn : styles.buttonDanger}`}
               onClick={() => setColourBlind((v) => !v)}
               aria-pressed={colourBlind}
             >

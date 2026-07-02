@@ -6,15 +6,15 @@
   aspect-ratio: 1 / 1;
   padding: 16px;
   border-radius: 18px;
-  /* the engraved stone slab */
-  background-color: #7c7e81;
+  /* the engraved sandstone slab (matches the clue tablets) */
+  background-color: #c7b797;
   background-image:
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.14), transparent 40%),
-    radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.22), transparent 45%),
-    repeating-radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.03) 0 2px, transparent 2px 4px);
+    radial-gradient(circle at 30% 20%, rgba(255, 252, 240, 0.3), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(84, 62, 30, 0.24), transparent 45%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(70, 52, 28, 0.04) 0 2px, transparent 2px 4px);
   box-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.18) inset,
-    0 -3px 6px rgba(0, 0, 0, 0.4) inset,
+    0 2px 0 rgba(255, 250, 235, 0.32) inset,
+    0 -3px 6px rgba(70, 52, 28, 0.4) inset,
     0 10px 24px rgba(0, 0, 0, 0.55);
 }
 
@@ -25,16 +25,16 @@
   justify-content: center;
   border-radius: 10px;
   /* a recessed socket carved into the slab */
-  background: radial-gradient(circle at 50% 40%, #6a6c6f, #565759);
+  background: radial-gradient(circle at 50% 40%, #857556, #675a41);
   box-shadow:
     0 2px 3px rgba(0, 0, 0, 0.45) inset,
-    0 -1px 1px rgba(255, 255, 255, 0.12) inset;
+    0 -1px 1px rgba(255, 250, 235, 0.14) inset;
   outline: none;
   cursor: pointer;
 }
 
 .cellEmpty {
-  background: radial-gradient(circle at 50% 40%, #5c5e61, #494a4c);
+  background: radial-gradient(circle at 50% 40%, #6d6048, #524731);
 }
 
 .cellOver {
