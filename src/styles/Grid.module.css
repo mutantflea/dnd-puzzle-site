@@ -1,0 +1,91 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: min(88vw, 460px);
+  aspect-ratio: 1 / 1;
+  padding: 16px;
+  border-radius: 18px;
+  /* the engraved stone slab */
+  background-color: #7c7e81;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.14), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.22), transparent 45%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.03) 0 2px, transparent 2px 4px);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -3px 6px rgba(0, 0, 0, 0.4) inset,
+    0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  /* a recessed socket carved into the slab */
+  background: radial-gradient(circle at 50% 40%, #6a6c6f, #565759);
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.45) inset,
+    0 -1px 1px rgba(255, 255, 255, 0.12) inset;
+  outline: none;
+  cursor: pointer;
+}
+
+.cellEmpty {
+  background: radial-gradient(circle at 50% 40%, #5c5e61, #494a4c);
+}
+
+.cellOver {
+  box-shadow:
+    0 0 0 2px var(--accent) inset,
+    0 2px 4px rgba(0, 0, 0, 0.5) inset;
+}
+
+.cellSelected {
+  box-shadow:
+    0 0 0 2px #d8c8a0 inset,
+    0 2px 3px rgba(0, 0, 0, 0.45) inset;
+}
+
+/* Raised, carved letter tile */
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82%;
+  height: 82%;
+  border-radius: 8px;
+  font-size: clamp(1.1rem, 5vw, 1.9rem);
+  font-weight: 700;
+  color: #3a3b3d;
+  background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face) 55%, #b4b5b3);
+  text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 -2px 3px rgba(0, 0, 0, 0.25) inset,
+    0 3px 5px rgba(0, 0, 0, 0.45);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.tile:active {
+  cursor: grabbing;
+}
+
+.tileDragging {
+  opacity: 0.25;
+}
+
+.tileOverlay {
+  cursor: grabbing;
+  transform: scale(1.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 8px 16px rgba(0, 0, 0, 0.6);
+  /* overlay tiles are ~same size as a grid tile */
+  width: clamp(48px, 15vw, 74px);
+  height: clamp(48px, 15vw, 74px);
+}

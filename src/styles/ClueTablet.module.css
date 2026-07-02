@@ -1,0 +1,134 @@
+.clues {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.cluesHeading {
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: #cfc8b8;
+  text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px var(--carve-lo);
+}
+
+/* Stone-tablet card */
+.tablet {
+  margin: 0;
+  padding: 0.9rem;
+  border-radius: 14px;
+  background-color: #78797c;
+  background-image:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(0, 0, 0, 0.2), transparent 45%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -2px 5px rgba(0, 0, 0, 0.35) inset,
+    0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.name {
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: #2f3032;
+  text-shadow: 0 1px 0 var(--carve-hi);
+  margin-bottom: 0.6rem;
+}
+
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+  padding: 0.6rem;
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% 40%, #6a6c6f, #545557);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) inset;
+}
+
+.rule {
+  width: 100%;
+}
+
+.ruleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.ruleCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ruleStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  color: #e6e1d4;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Small engraved tile used inside clue recreations */
+.miniTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.35rem;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #3a3b3d;
+  background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face) 55%, #b4b5b3);
+  text-shadow: 0 1px 0 var(--carve-hi);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.note {
+  margin: 0.6rem 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #2c2d2f;
+}
+
+/* Mini 5x5 reference grid inside Bernadette's tablet */
+.miniGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 190px;
+  margin: 0 auto;
+}
+
+.miniCell,
+.miniCellEmpty {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.miniCell {
+  color: #3a3b3d;
+  background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.miniCellEmpty {
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) inset;
+}
