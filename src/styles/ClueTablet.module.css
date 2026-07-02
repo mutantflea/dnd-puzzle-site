@@ -1,12 +1,16 @@
 .clues {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  /* wrap tablets into as many columns as fit; grows sideways as clues are
+     added rather than only pushing the page down. */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.9rem;
+  align-content: start;
 }
 
 .cluesHeading {
-  margin: 0 0 0.25rem;
-  font-size: 1.4rem;
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 1.3rem;
   letter-spacing: 0.08em;
   color: #cfc8b8;
   text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px var(--carve-lo);
@@ -15,7 +19,7 @@
 /* Stone-tablet card */
 .tablet {
   margin: 0;
-  padding: 0.9rem;
+  padding: 0.7rem;
   border-radius: 14px;
   background-color: #78797c;
   background-image:
@@ -28,19 +32,19 @@
 }
 
 .name {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   letter-spacing: 0.06em;
   color: #2f3032;
   text-shadow: 0 1px 0 var(--carve-hi);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .face {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 88px;
-  padding: 0.6rem;
+  min-height: 64px;
+  padding: 0.5rem;
   border-radius: 10px;
   background: radial-gradient(circle at 50% 40%, #6a6c6f, #545557);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) inset;
@@ -95,9 +99,9 @@
 }
 
 .note {
-  margin: 0.6rem 0 0.5rem;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
   color: #2c2d2f;
 }
 
@@ -107,7 +111,7 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
   width: 100%;
-  max-width: 190px;
+  max-width: 150px;
   margin: 0 auto;
 }
 
@@ -141,7 +145,7 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
   width: 100%;
-  max-width: 190px;
+  max-width: 150px;
   aspect-ratio: 1 / 1;
   margin: 0 auto;
 }

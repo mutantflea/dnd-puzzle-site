@@ -1,5 +1,5 @@
 .app {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem 1.25rem 3rem;
 }
@@ -27,7 +27,9 @@
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(260px, 340px) 1fr;
+  /* clues take the flexible space and wrap into columns; the board is a
+     fixed-width column pinned on the right. */
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 1.75rem;
   align-items: start;
 }
@@ -41,6 +43,10 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
+  /* keep the grid in view while the clues scroll beside it */
+  position: sticky;
+  top: 1rem;
+  align-self: start;
 }
 
 .toolbar {
@@ -82,5 +88,9 @@
   }
   .sidebar {
     order: 2;
+  }
+  /* on a narrow screen the board goes on top and shouldn't stick */
+  .board {
+    position: static;
   }
 }
