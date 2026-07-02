@@ -37,6 +37,25 @@
   min-width: 0;
 }
 
+/* Do a barrel roll — spin the whole layout (clues + grid) once. */
+.rolling {
+  animation: barrelRoll 1s ease-in-out;
+}
+
+/* clip the overflow during the spin so it doesn't flash scrollbars */
+.appRolling {
+  overflow: hidden;
+}
+
+@keyframes barrelRoll {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .board {
   display: flex;
   flex-direction: column;

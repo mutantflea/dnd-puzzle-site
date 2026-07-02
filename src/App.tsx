@@ -39,6 +39,7 @@ function loadInitialGrid(): GridState {
 export default function App() {
   const [grid, setGrid] = useState<GridState>(loadInitialGrid);
   const [copied, setCopied] = useState(false);
+  const [rolling, setRolling] = useState(false);
   const [colourBlind, setColourBlind] = useState(
     () => localStorage.getItem(CB_KEY) === "1",
   );
@@ -84,7 +85,7 @@ export default function App() {
   }
 
   return (
-    <div className={styles.app}>
+    <div className={`${styles.app} ${rolling ? styles.appRolling : ""}`}>
       <header className={styles.header}>
         <h1 className={styles.title}>The Tablets</h1>
         <p className={styles.subtitle}>
@@ -93,7 +94,10 @@ export default function App() {
         </p>
       </header>
 
-      <main className={styles.layout}>
+      <main
+        className={`${styles.layout} ${rolling ? styles.rolling : ""}`}
+        onAnimationEnd={() => setRolling(false)}
+      >
         <aside className={styles.sidebar}>
           <Clues />
         </aside>
@@ -117,6 +121,14 @@ export default function App() {
               aria-pressed={colourBlind}
             >
               Fenrick mode: {colourBlind ? "on" : "off"}
+            </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => setRolling(true)}
+              disabled={rolling}
+            >
+              Do a barrel roll
             </button>
           </div>
           <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} />
