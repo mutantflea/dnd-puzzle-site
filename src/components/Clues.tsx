@@ -11,12 +11,12 @@ type Mark = { row: number; col: number; symbol: "X" | "O" };
 type Arrow = { from: [number, number]; to: [number, number]; double?: boolean };
 
 const FENRICK: { marks: Mark[]; arrows: Arrow[] } = {
-  // X -> O, moving right along row 4 (col 3 -> col 5)
+  // clue was upside down: 180° rotation -> row 2, X moves left (col 3 -> col 1)
   marks: [
-    { row: 4, col: 3, symbol: "X" },
-    { row: 4, col: 5, symbol: "O" },
+    { row: 2, col: 3, symbol: "X" },
+    { row: 2, col: 1, symbol: "O" },
   ],
-  arrows: [{ from: [4, 3], to: [4, 5] }],
+  arrows: [{ from: [2, 3], to: [2, 1] }],
 };
 
 const AURELIA: { marks: Mark[]; arrows: Arrow[] } = {
@@ -153,7 +153,7 @@ export default function Clues() {
         <GridClue marks={BJORN_ASTRID.marks} arrows={BJORN_ASTRID.arrows} />
       </ClueTablet>
 
-      <ClueTablet name="Fenrick" note="A tile moves right.">
+      <ClueTablet name="Fenrick" note="A tile moves left.">
         <GridClue marks={FENRICK.marks} arrows={FENRICK.arrows} />
       </ClueTablet>
 
