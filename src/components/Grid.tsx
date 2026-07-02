@@ -16,9 +16,10 @@ interface GridProps {
   grid: GridState;
   onMove: (from: number, to: number) => void;
   onSetCell: (index: number, value: string) => void;
+  rolling?: boolean;
 }
 
-export default function Grid({ grid, onMove, onSetCell }: GridProps) {
+export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,7 +82,12 @@ export default function Grid({ grid, onMove, onSetCell }: GridProps) {
       onDragEnd={handleDragEnd}
       onDragCancel={() => setActiveIndex(null)}
     >
-      <div ref={containerRef} className={styles.grid} role="grid" aria-label="Puzzle grid">
+      <div
+        ref={containerRef}
+        className={`${styles.grid} ${rolling ? styles.gridRolling : ""}`}
+        role="grid"
+        aria-label="Puzzle grid"
+      >
         {grid.map((letter, i) => (
           <Cell
             key={i}

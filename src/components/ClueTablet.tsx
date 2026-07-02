@@ -5,13 +5,16 @@ interface ClueTabletProps {
   name: string;
   note?: string;
   locked?: boolean; // a not-yet-revealed clue
+  rolling?: boolean; // barrel-roll animation
   children: ReactNode; // the CSS/SVG recreation of the rule
 }
 
 /** A stone-tablet card showing a recreated clue. */
-export default function ClueTablet({ name, note, locked, children }: ClueTabletProps) {
+export default function ClueTablet({ name, note, locked, rolling, children }: ClueTabletProps) {
   return (
-    <figure className={`${styles.tablet} ${locked ? styles.tabletLocked : ""}`}>
+    <figure
+      className={`${styles.tablet} ${locked ? styles.tabletLocked : ""} ${rolling ? styles.tabletRolling : ""}`}
+    >
       <figcaption className={styles.name}>{name}</figcaption>
       <div className={`${styles.face} ${locked ? styles.faceLocked : ""}`}>
         <div className={styles.rule}>{children}</div>

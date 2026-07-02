@@ -94,12 +94,9 @@ export default function App() {
         </p>
       </header>
 
-      <main
-        className={`${styles.layout} ${rolling ? styles.rolling : ""}`}
-        onAnimationEnd={() => setRolling(false)}
-      >
+      <main className={styles.layout} onAnimationEnd={() => setRolling(false)}>
         <aside className={styles.sidebar}>
-          <Clues />
+          <Clues rolling={rolling} />
         </aside>
 
         <section className={styles.board}>
@@ -131,7 +128,7 @@ export default function App() {
               Do a barrel roll
             </button>
           </div>
-          <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} />
+          <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} rolling={rolling} />
           <p className={styles.hint}>
             Tip: use the arrow keys to move between squares, letters to fill them,
             and Backspace to clear.

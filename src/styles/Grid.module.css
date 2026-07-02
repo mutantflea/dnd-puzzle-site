@@ -18,6 +18,19 @@
     0 10px 24px rgba(0, 0, 0, 0.55);
 }
 
+.gridRolling {
+  animation: barrelRoll 1s ease-in-out;
+}
+
+@keyframes barrelRoll {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .cell {
   position: relative;
   display: flex;

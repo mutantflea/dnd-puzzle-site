@@ -30,6 +30,20 @@
     0 6px 14px rgba(0, 0, 0, 0.45);
 }
 
+/* Barrel roll — each tablet spins about its own centre. */
+.tabletRolling {
+  animation: tabletBarrelRoll 1s ease-in-out;
+}
+
+@keyframes tabletBarrelRoll {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* A sealed, not-yet-revealed clue: darker, mossier stone that recedes next
    to the active tablets. */
 .tabletLocked {

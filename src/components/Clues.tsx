@@ -115,7 +115,7 @@ function GridClue({ marks, arrows }: { marks: Mark[]; arrows: Arrow[] }) {
   );
 }
 
-export default function Clues() {
+export default function Clues({ rolling }: { rolling?: boolean }) {
   return (
     <div className={styles.clues}>
       <h2 className={styles.cluesHeading}>The Tablets</h2>
@@ -123,6 +123,7 @@ export default function Clues() {
       <ClueTablet
         name="Rook Wood"
         note="The odd one out — eight marks in four pairs, plus a red envelope."
+        rolling={rolling}
       >
         <div className={styles.ruleRow}>
           {["XX", "XX", "XX", "XX"].map((pair, i) => (
@@ -136,6 +137,7 @@ export default function Clues() {
       <ClueTablet
         name="Bernadette"
         note="The 5×5 grid — this is the board in the centre. (Came with an addressed envelope.)"
+        rolling={rolling}
       >
         <div className={styles.miniGrid}>
           {BERNADETTE_LAYOUT.split("").map((ch, i) => (
@@ -149,20 +151,26 @@ export default function Clues() {
         </div>
       </ClueTablet>
 
-      <ClueTablet name="Bjorn/Astrid" note="Two swaps, left ↔ right.">
+      <ClueTablet name="Bjorn/Astrid" note="Two swaps, left ↔ right." rolling={rolling}>
         <GridClue marks={BJORN_ASTRID.marks} arrows={BJORN_ASTRID.arrows} />
       </ClueTablet>
 
-      <ClueTablet name="Fenrick" note="A tile moves left.">
+      <ClueTablet name="Fenrick" note="A tile moves left." rolling={rolling}>
         <GridClue marks={FENRICK.marks} arrows={FENRICK.arrows} />
       </ClueTablet>
 
-      <ClueTablet name="Aurélia" note="A tile moves up.">
+      <ClueTablet name="Aurélia" note="A tile moves up." rolling={rolling}>
         <GridClue marks={AURELIA.marks} arrows={AURELIA.arrows} />
       </ClueTablet>
 
       {[0, 1].map((n) => (
-        <ClueTablet key={`sealed-${n}`} name="? ? ?" note="Sealed — will be revealed soon." locked>
+        <ClueTablet
+          key={`sealed-${n}`}
+          name="? ? ?"
+          note="Sealed — will be revealed soon."
+          locked
+          rolling={rolling}
+        >
           <div className={styles.sealed}>
             <span className={styles.sealedGlyph}>?</span>
           </div>
