@@ -16,41 +16,41 @@
   text-shadow: 0 1px 0 var(--carve-hi), 0 -1px 1px var(--carve-lo);
 }
 
-/* Stone-tablet card */
+/* Sandstone-tablet card — warm tan gives the dark carved text good contrast */
 .tablet {
   margin: 0;
   padding: 0.7rem;
   border-radius: 14px;
-  background-color: #78797c;
+  background-color: #c7b797;
   background-image:
-    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.12), transparent 40%),
-    radial-gradient(circle at 80% 85%, rgba(0, 0, 0, 0.2), transparent 45%);
+    radial-gradient(circle at 25% 20%, rgba(255, 252, 240, 0.28), transparent 42%),
+    radial-gradient(circle at 80% 85%, rgba(84, 62, 30, 0.22), transparent 48%);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0 -2px 5px rgba(0, 0, 0, 0.35) inset,
+    0 1px 0 rgba(255, 250, 235, 0.35) inset,
+    0 -2px 5px rgba(70, 52, 28, 0.35) inset,
     0 6px 14px rgba(0, 0, 0, 0.45);
 }
 
 /* A sealed, not-yet-revealed clue: darker, mossier stone that recedes next
    to the active tablets. */
 .tabletLocked {
-  background-color: #5f6063;
+  background-color: #a89c83;
   background-image:
-    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.07), transparent 40%),
-    radial-gradient(circle at 80% 85%, rgba(0, 0, 0, 0.3), transparent 45%);
+    radial-gradient(circle at 25% 20%, rgba(255, 250, 235, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(50, 38, 20, 0.3), transparent 45%);
 }
 
 .tabletLocked .name {
-  color: #3d3e40;
+  color: #3a3222;
   letter-spacing: 0.22em;
 }
 
 .faceLocked {
-  background: radial-gradient(circle at 50% 40%, #55565a, #3f4043);
-  border: 1px dashed rgba(0, 0, 0, 0.4);
+  background: radial-gradient(circle at 50% 40%, #6f6349, #524832);
+  border: 1px dashed rgba(40, 30, 15, 0.45);
   box-shadow:
     0 2px 5px rgba(0, 0, 0, 0.5) inset,
-    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    0 1px 0 rgba(255, 250, 235, 0.06) inset;
 }
 
 .sealed {
@@ -74,8 +74,8 @@
 .name {
   font-size: 0.98rem;
   letter-spacing: 0.06em;
-  color: #2f3032;
-  text-shadow: 0 1px 0 var(--carve-hi);
+  color: #332818;
+  text-shadow: 0 1px 0 rgba(255, 250, 235, 0.45);
   margin-bottom: 0.5rem;
 }
 
@@ -86,7 +86,7 @@
   min-height: 64px;
   padding: 0.5rem;
   border-radius: 10px;
-  background: radial-gradient(circle at 50% 40%, #6a6c6f, #545557);
+  background: radial-gradient(circle at 50% 40%, #857556, #675a41);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) inset;
 }
 
@@ -142,7 +142,7 @@
   margin: 0.5rem 0 0;
   font-size: 0.78rem;
   line-height: 1.35;
-  color: #2c2d2f;
+  color: #3a2f1d;
 }
 
 /* Mini 5x5 reference grid inside Bernadette's tablet */
