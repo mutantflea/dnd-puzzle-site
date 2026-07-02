@@ -31,6 +31,46 @@
     0 6px 14px rgba(0, 0, 0, 0.45);
 }
 
+/* A sealed, not-yet-revealed clue: darker, mossier stone that recedes next
+   to the active tablets. */
+.tabletLocked {
+  background-color: #5f6063;
+  background-image:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.07), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(0, 0, 0, 0.3), transparent 45%);
+}
+
+.tabletLocked .name {
+  color: #3d3e40;
+  letter-spacing: 0.22em;
+}
+
+.faceLocked {
+  background: radial-gradient(circle at 50% 40%, #55565a, #3f4043);
+  border: 1px dashed rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.5) inset,
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.sealed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Big "?" carved into the stone. */
+.sealedGlyph {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #4a4b4e;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22),
+    0 -1px 1px rgba(0, 0, 0, 0.55);
+}
+
 .name {
   font-size: 0.98rem;
   letter-spacing: 0.06em;

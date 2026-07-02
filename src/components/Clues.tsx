@@ -160,6 +160,14 @@ export default function Clues() {
       <ClueTablet name="Aurélia" note="A tile moves up.">
         <GridClue marks={AURELIA.marks} arrows={AURELIA.arrows} />
       </ClueTablet>
+
+      {[0, 1].map((n) => (
+        <ClueTablet key={`sealed-${n}`} name="? ? ?" note="Sealed — will be revealed soon." locked>
+          <div className={styles.sealed}>
+            <span className={styles.sealedGlyph}>?</span>
+          </div>
+        </ClueTablet>
+      ))}
     </div>
   );
 }
