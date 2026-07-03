@@ -117,9 +117,10 @@ function GridClue({ marks, arrows }: { marks: Mark[]; arrows: Arrow[] }) {
 
 export default function Clues({ rolling }: { rolling?: boolean }) {
   return (
-    <div className={styles.clues}>
+    <>
       <h2 className={styles.cluesHeading}>The Tablets</h2>
 
+      <div className={styles.clues}>
       <ClueTablet
         name="Rook Wood"
         note="The odd one out — eight marks in four pairs, plus a red envelope."
@@ -176,6 +177,7 @@ export default function Clues({ rolling }: { rolling?: boolean }) {
           </div>
         </ClueTablet>
       ))}
-    </div>
+      </div>
+    </>
   );
 }

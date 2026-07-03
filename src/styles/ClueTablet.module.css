@@ -1,15 +1,16 @@
 .clues {
   /* wrap tablets into as many columns as fit; grows sideways as clues are
-     added rather than only pushing the page down. */
+     added rather than only pushing the page down. auto-rows: 1fr keeps every
+     row the same height so short tablets (sealed, pairs) match the tall ones. */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 0.9rem;
   align-content: start;
 }
 
 .cluesHeading {
-  grid-column: 1 / -1;
-  margin: 0;
+  margin: 0 0 0.6rem;
   font-size: 1.3rem;
   letter-spacing: 0.08em;
   color: #cfc8b8;
@@ -20,6 +21,9 @@
   margin: 0;
   padding: 0.7rem;
   border-radius: 14px;
+  /* flex column so the face can grow to fill an equal-height row */
+  display: flex;
+  flex-direction: column;
   background-color: #c7b797;
   background-image:
     radial-gradient(circle at 25% 20%, rgba(255, 252, 240, 0.28), transparent 42%),
@@ -94,6 +98,7 @@
 
 .face {
   display: flex;
+  flex: 1; /* fill the tablet's height so all faces line up */
   align-items: center;
   justify-content: center;
   min-height: 64px;
