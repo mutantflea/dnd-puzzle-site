@@ -9,7 +9,7 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import Cell from "./Cell";
-import { GRID_SIZE, type Grid as GridState } from "../puzzle";
+import { GRID_SIZE, CELL_COUNT, type Grid as GridState } from "../puzzle";
 import styles from "../styles/Grid.module.css";
 
 interface GridProps {
@@ -82,6 +82,9 @@ export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
     const ch = e.target.value.slice(-1);
     if (selected !== null && /[a-zA-Z]/.test(ch)) {
       onSetCell(selected, ch);
+      // advance to the next square: across the row, wrapping to the next
+      // row, and from the last square back to the first.
+      setSelected((cur) => (cur === null ? 0 : (cur + 1) % CELL_COUNT));
     }
     // the input is controlled to "" so it never accumulates text
   }
