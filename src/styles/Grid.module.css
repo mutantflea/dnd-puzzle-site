@@ -80,6 +80,14 @@
     0 2px 3px rgba(0, 0, 0, 0.45) inset;
 }
 
+/* duplicate-letter highlight from the Missing/Duplicate table (red flash) */
+.cellHighlight {
+  box-shadow:
+    0 0 0 3px #e23b3b inset,
+    0 0 12px 3px rgba(226, 59, 59, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.4) inset;
+}
+
 /* Raised, carved letter tile */
 .tile {
   display: flex;

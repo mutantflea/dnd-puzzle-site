@@ -1,0 +1,87 @@
+/* Sandstone card matching the clue tablets */
+.card {
+  width: min(88vw, 460px);
+  padding: 0.7rem 0.9rem 0.9rem;
+  border-radius: 14px;
+  background-color: #c7b797;
+  background-image:
+    radial-gradient(circle at 25% 20%, rgba(255, 252, 240, 0.28), transparent 42%),
+    radial-gradient(circle at 80% 85%, rgba(84, 62, 30, 0.22), transparent 48%);
+  box-shadow:
+    0 1px 0 rgba(255, 250, 235, 0.35) inset,
+    0 -2px 5px rgba(70, 52, 28, 0.35) inset,
+    0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 0.9rem;
+  align-items: start;
+}
+
+.colHead {
+  color: #332818;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(70, 52, 28, 0.4);
+}
+
+/* the second column is separated from the first by a carved line */
+.table > .colHead:first-child {
+  border-right: 1px solid rgba(70, 52, 28, 0.25);
+}
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  align-content: flex-start;
+  min-height: 1.7rem;
+}
+
+/* small engraved tile — matches the clue mini-tiles */
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  padding: 0 0.3rem;
+  border-radius: 6px;
+  font-family: var(--font-cormorant);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #3a3b3d;
+  background: linear-gradient(160deg, var(--tile-face-hi), var(--tile-face) 55%, #b4b5b3);
+  text-shadow: 0 1px 0 var(--carve-hi);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.tileButton {
+  border: 0;
+  cursor: pointer;
+}
+
+.tileButton:hover {
+  filter: brightness(1.06);
+}
+
+/* clicked duplicate — red ring, matching the grid highlight flash */
+.tileActive {
+  box-shadow:
+    0 0 0 2px #e23b3b,
+    0 0 8px 1px rgba(226, 59, 59, 0.75),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.empty {
+  color: #6a5a3d;
+  font-style: italic;
+  font-size: 0.85rem;
+}

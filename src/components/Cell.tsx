@@ -6,6 +6,7 @@ interface CellProps {
   index: number;
   letter: string;
   selected: boolean;
+  highlighted: boolean;
   onSelect: (index: number) => void;
 }
 
@@ -15,7 +16,13 @@ interface CellProps {
  * to the grid's hidden input, which is what actually captures typing (so the
  * software keyboard appears on iOS and key handling is consistent everywhere).
  */
-export default function Cell({ index, letter, selected, onSelect }: CellProps) {
+export default function Cell({
+  index,
+  letter,
+  selected,
+  highlighted,
+  onSelect,
+}: CellProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: `cell-${index}`,
     data: { index },
@@ -26,6 +33,7 @@ export default function Cell({ index, letter, selected, onSelect }: CellProps) {
     letter ? styles.cellFilled : styles.cellEmpty,
     isOver ? styles.cellOver : "",
     selected ? styles.cellSelected : "",
+    highlighted ? styles.cellHighlight : "",
   ]
     .filter(Boolean)
     .join(" ");

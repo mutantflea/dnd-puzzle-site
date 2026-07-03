@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Grid from "./components/Grid";
 import Clues from "./components/Clues";
+import LetterTable from "./components/LetterTable";
 import {
   INITIAL_GRID,
   decodeGrid,
@@ -40,6 +41,25 @@ export default function App() {
   const [grid, setGrid] = useState<GridState>(loadInitialGrid);
   const [copied, setCopied] = useState(false);
   const [rolling, setRolling] = useState(false);
+  const [highlight, setHighlight] = useState<string | null>(null);
+  const highlightTimer = useRef<number | null>(null);
+
+  // Flash a duplicate letter's cells for a couple of seconds, then clear.
+  const handleHighlight = useCallback((letter: string | null) => {
+    if (highlightTimer.current !== null) window.clearTimeout(highlightTimer.current);
+    setHighlight(letter);
+    if (letter !== null) {
+      highlightTimer.current = window.setTimeout(() => setHighlight(null), 2500);
+    }
+  }, []);
+
+  // clear the pending timer if the app unmounts
+  useEffect(
+    () => () => {
+      if (highlightTimer.current !== null) window.clearTimeout(highlightTimer.current);
+    },
+    [],
+  );
   const [colourBlind, setColourBlind] = useState(
     () => localStorage.getItem(CB_KEY) === "1",
   );
@@ -128,7 +148,14 @@ export default function App() {
               Do a barrel roll
             </button>
           </div>
-          <Grid grid={grid} onMove={handleMove} onSetCell={handleSetCell} rolling={rolling} />
+          <Grid
+            grid={grid}
+            onMove={handleMove}
+            onSetCell={handleSetCell}
+            rolling={rolling}
+            highlight={highlight}
+          />
+          <LetterTable grid={grid} highlight={highlight} onHighlight={handleHighlight} />
           <p className={styles.hint}>
             Tip: tap a square to select it, then type a letter (or Backspace to
             clear). Arrow keys move between squares.

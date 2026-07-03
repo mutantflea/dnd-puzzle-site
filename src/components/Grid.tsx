@@ -17,9 +17,10 @@ interface GridProps {
   onMove: (from: number, to: number) => void;
   onSetCell: (index: number, value: string) => void;
   rolling?: boolean;
+  highlight?: string | null;
 }
 
-export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
+export default function Grid({ grid, onMove, onSetCell, rolling, highlight }: GridProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   // One real input backs all typing: tapping a cell focuses it, so iOS shows
@@ -122,6 +123,7 @@ export default function Grid({ grid, onMove, onSetCell, rolling }: GridProps) {
             index={i}
             letter={letter}
             selected={selected === i}
+            highlighted={!!letter && letter === highlight}
             onSelect={selectCell}
           />
         ))}
