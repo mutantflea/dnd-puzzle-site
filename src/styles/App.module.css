@@ -80,6 +80,20 @@
   transform: translateY(1px);
 }
 
+/* keep the share button a constant width so "Link copied!" doesn't re-flow
+   the centred toolbar */
+.buttonShare {
+  min-width: 12rem;
+}
+
+/* fixed-width slot for the on/off text so toggling Fenrick mode doesn't
+   change the button width (which was shifting the whole toolbar) */
+.toggleState {
+  display: inline-block;
+  min-width: 2.4ch;
+  text-align: left;
+}
+
 /* Red variant — Reset, and Fenrick mode when off */
 .buttonDanger {
   background: linear-gradient(180deg, #b23a3a, #7f2222);

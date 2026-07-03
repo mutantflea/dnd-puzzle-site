@@ -128,7 +128,11 @@ export default function App() {
             >
               Reset to original
             </button>
-            <button type="button" className={styles.button} onClick={handleShare}>
+            <button
+              type="button"
+              className={`${styles.button} ${styles.buttonShare}`}
+              onClick={handleShare}
+            >
               {copied ? "Link copied!" : "Copy shareable link"}
             </button>
             <button
@@ -137,7 +141,8 @@ export default function App() {
               onClick={() => setColourBlind((v) => !v)}
               aria-pressed={colourBlind}
             >
-              Fenrick mode: {colourBlind ? "on" : "off"}
+              Fenrick mode:{" "}
+              <span className={styles.toggleState}>{colourBlind ? "on" : "off"}</span>
             </button>
             <button
               type="button"
