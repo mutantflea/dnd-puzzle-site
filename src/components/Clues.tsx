@@ -11,21 +11,27 @@ type Mark = { row: number; col: number; symbol: "X" | "O" };
 type Arrow = { from: [number, number]; to: [number, number]; double?: boolean };
 
 const FENRICK: { marks: Mark[]; arrows: Arrow[] } = {
-  // clue was upside down: 180° rotation -> row 2, X moves left (col 3 -> col 1)
+  // revised: two tiles each move left one square (no O targets)
   marks: [
-    { row: 2, col: 3, symbol: "X" },
-    { row: 2, col: 1, symbol: "O" },
+    { row: 2, col: 2, symbol: "X" },
+    { row: 2, col: 5, symbol: "X" },
   ],
-  arrows: [{ from: [2, 3], to: [2, 1] }],
+  arrows: [
+    { from: [2, 2], to: [2, 1] },
+    { from: [2, 5], to: [2, 4] },
+  ],
 };
 
 const AURELIA: { marks: Mark[]; arrows: Arrow[] } = {
-  // X -> O, moving up column 4 (row 4 -> row 2)
+  // revised: two tiles each move up one square (no O targets)
   marks: [
-    { row: 2, col: 4, symbol: "O" },
+    { row: 2, col: 4, symbol: "X" },
     { row: 4, col: 4, symbol: "X" },
   ],
-  arrows: [{ from: [4, 4], to: [2, 4] }],
+  arrows: [
+    { from: [2, 4], to: [1, 4] },
+    { from: [4, 4], to: [3, 4] },
+  ],
 };
 
 const BJORN_ASTRID: { marks: Mark[]; arrows: Arrow[] } = {
@@ -58,7 +64,12 @@ function endpoints(a: Arrow, pad = 7) {
   const len = Math.hypot(dx, dy) || 1;
   const ux = dx / len;
   const uy = dy / len;
-  return { x1: x1 + ux * pad, y1: y1 + uy * pad, x2: x2 - ux * pad, y2: y2 - uy * pad };
+  return {
+    x1: x1 + ux * pad,
+    y1: y1 + uy * pad,
+    x2: x2 - ux * pad,
+    y2: y2 - uy * pad,
+  };
 }
 
 /** A square 5x5 clue grid with X/O marks placed in cells and arrows drawn
@@ -121,69 +132,77 @@ export default function Clues({ rolling }: { rolling?: boolean }) {
       <h2 className={styles.cluesHeading}>The Tablets</h2>
 
       <div className={styles.clues}>
-      <ClueTablet
-        name="Rook Wood"
-        note="The odd one out — eight marks in four pairs, plus a red envelope."
-        rolling={rolling}
-      >
-        <div className={styles.ruleRow}>
-          {["XX", "XX", "XX", "XX"].map((pair, i) => (
-            <span key={i} className={styles.miniTile}>
-              {pair}
-            </span>
-          ))}
-        </div>
-      </ClueTablet>
+        <ClueTablet
+          name="Rook Wood"
+          note="The odd one out — eight marks in four pairs, plus a red envelope."
+          rolling={rolling}
+        >
+          <div className={styles.ruleRow}>
+            {["XX", "XX", "XX", "XX"].map((pair, i) => (
+              <span key={i} className={styles.miniTile}>
+                {pair}
+              </span>
+            ))}
+          </div>
+        </ClueTablet>
 
-      <ClueTablet
-        name="Bernadette"
-        note="The 5×5 grid — this is the board in the centre. (Came with an addressed envelope.)"
-        rolling={rolling}
-      >
-        <div className={styles.miniGrid}>
-          {BERNADETTE_LAYOUT.split("").map((ch, i) => (
-            <span
-              key={i}
-              className={ch === "." ? styles.miniCellEmpty : styles.miniCell}
-            >
-              {ch === "." ? "" : ch}
-            </span>
-          ))}
-        </div>
-      </ClueTablet>
+        <ClueTablet
+          name="Bernadette"
+          note="The 5×5 grid — this is the board in the centre. (Came with an addressed envelope.)"
+          rolling={rolling}
+        >
+          <div className={styles.miniGrid}>
+            {BERNADETTE_LAYOUT.split("").map((ch, i) => (
+              <span
+                key={i}
+                className={ch === "." ? styles.miniCellEmpty : styles.miniCell}
+              >
+                {ch === "." ? "" : ch}
+              </span>
+            ))}
+          </div>
+        </ClueTablet>
 
-      <ClueTablet name="Bjorn/Astrid" note="Two swaps, left ↔ right." rolling={rolling}>
-        <GridClue marks={BJORN_ASTRID.marks} arrows={BJORN_ASTRID.arrows} />
-      </ClueTablet>
+        <ClueTablet
+          name="Bjorn/Astrid"
+          note="Two swaps, left ↔ right."
+          rolling={rolling}
+        >
+          <GridClue marks={BJORN_ASTRID.marks} arrows={BJORN_ASTRID.arrows} />
+        </ClueTablet>
 
-      <ClueTablet name="Fenrick" note="A tile moves left." rolling={rolling}>
-        <GridClue marks={FENRICK.marks} arrows={FENRICK.arrows} />
-      </ClueTablet>
+        <ClueTablet
+          name="Fenrick"
+          note="Two tiles move left."
+          rolling={rolling}
+        >
+          <GridClue marks={FENRICK.marks} arrows={FENRICK.arrows} />
+        </ClueTablet>
 
-      <ClueTablet name="Aurélia" note="A tile moves up." rolling={rolling}>
-        <GridClue marks={AURELIA.marks} arrows={AURELIA.arrows} />
-      </ClueTablet>
+        <ClueTablet name="Aurélia" note="Two tiles move up." rolling={rolling}>
+          <GridClue marks={AURELIA.marks} arrows={AURELIA.arrows} />
+        </ClueTablet>
 
-      <ClueTablet
-        name="Ailbhe"
-        note="A Webdings substitution cipher (solved)."
-        rolling={rolling}
-      >
-        <p className={styles.cipherMessage}>
-          The celestial light heralds dawn on Midgard
-        </p>
-      </ClueTablet>
+        <ClueTablet
+          name="Ailbhe"
+          note="A Webdings substitution cipher (solved)."
+          rolling={rolling}
+        >
+          <p className={styles.cipherMessage}>
+            The celestial light heralds dawn on Midgard
+          </p>
+        </ClueTablet>
 
-      <ClueTablet
-        name="? ? ?"
-        note="Sealed — will be revealed soon."
-        locked
-        rolling={rolling}
-      >
-        <div className={styles.sealed}>
-          <span className={styles.sealedGlyph}>?</span>
-        </div>
-      </ClueTablet>
+        <ClueTablet
+          name="? ? ?"
+          note="Sealed — will be revealed soon."
+          locked
+          rolling={rolling}
+        >
+          <div className={styles.sealed}>
+            <span className={styles.sealedGlyph}>?</span>
+          </div>
+        </ClueTablet>
       </div>
     </>
   );

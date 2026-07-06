@@ -2,7 +2,7 @@
 
 A little static site to help me and my friends crack the stone-tablet puzzle. A
 big editable **5×5 grid** of movable letter tiles sits in the centre, with the
-five clue tablets recreated alongside.
+clue tablets recreated alongside.
 
 ## The puzzle
 
@@ -12,10 +12,12 @@ photo shows a real address). The site shows clean recreations of each:
 | Tablet | Meaning |
 | --- | --- |
 | **Bernadette** | The 5×5 grid of engraved letters — the starting board. |
-| **Fenrick** | `X → O` — a tile moves right. |
-| **Aurélia** | `X ↑ O` — a tile moves up. |
+| **Fenrick** | Two tiles move left. |
+| **Aurélia** | Two tiles move up. |
 | **Bjorn/Astrid** | `O ↔ X` / `X ↔ O` — two horizontal swaps. |
 | **Rook Wood** | `XX XX XX XX` — the odd one out (eight marks in four pairs) + a red envelope. |
+| **Ailbhe** | A Webdings substitution cipher — decodes to "The celestial light heralds dawn on Midgard". |
+| **? ? ?** | Sealed — one final clue still to be revealed. |
 
 The clue tablets look like transformation rules applied to Bernadette's grid — the
 site lets everyone experiment with moving/swapping tiles to test theories.
