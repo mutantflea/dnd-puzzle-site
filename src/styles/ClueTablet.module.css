@@ -112,6 +112,18 @@
   width: 100%;
 }
 
+/* decoded cipher message, engraved into the recessed face */
+.cipherMessage {
+  margin: 0;
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  text-align: center;
+  color: #f0eadd;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
 .ruleRow {
   display: flex;
   align-items: center;

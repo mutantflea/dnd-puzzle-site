@@ -164,19 +164,26 @@ export default function Clues({ rolling }: { rolling?: boolean }) {
         <GridClue marks={AURELIA.marks} arrows={AURELIA.arrows} />
       </ClueTablet>
 
-      {[0, 1].map((n) => (
-        <ClueTablet
-          key={`sealed-${n}`}
-          name="? ? ?"
-          note="Sealed — will be revealed soon."
-          locked
-          rolling={rolling}
-        >
-          <div className={styles.sealed}>
-            <span className={styles.sealedGlyph}>?</span>
-          </div>
-        </ClueTablet>
-      ))}
+      <ClueTablet
+        name="Ailbhe"
+        note="A Webdings substitution cipher (solved)."
+        rolling={rolling}
+      >
+        <p className={styles.cipherMessage}>
+          The celestial light heralds dawn on Midgard
+        </p>
+      </ClueTablet>
+
+      <ClueTablet
+        name="? ? ?"
+        note="Sealed — will be revealed soon."
+        locked
+        rolling={rolling}
+      >
+        <div className={styles.sealed}>
+          <span className={styles.sealedGlyph}>?</span>
+        </div>
+      </ClueTablet>
       </div>
     </>
   );
